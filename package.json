@@ -1,0 +1,39 @@
+{
+  "name": "wdc-translator",
+  "version": "1.0.0",
+  "description": "A translator based on word difficulty and context",
+  "main": "dist/index.umd.min.js",
+  "module": "dist/index.umd.min.js",
+  "scripts": {
+    "lint": "eslint src --fix",
+    "format": "prettier --write src/**/*.ts",
+    "build": "rollup -c rollup.config.mjs"
+  },
+  "keywords": [
+    "wdc-translator",
+    "word dificulty translation",
+    "contextual translation"
+  ],
+  "author": "rossroma",
+  "license": "GPL-3.0-only",
+  "git": "https://github.com/rossroma/wdc-translator",
+  "devDependencies": {
+    "@eslint/js": "^9.18.0",
+    "@rollup/plugin-terser": "^0.4.4",
+    "@rollup/plugin-typescript": "^12.1.2",
+    "@typescript-eslint/eslint-plugin": "^8.21.0",
+    "@typescript-eslint/parser": "^8.21.0",
+    "eslint": "^9.18.0",
+    "eslint-config-prettier": "^10.0.1",
+    "eslint-plugin-prettier": "^5.2.3",
+    "globals": "^15.14.0",
+    "prettier": "^3.4.2",
+    "rollup": "^4.31.0",
+    "typescript": "^5.7.3",
+    "typescript-eslint": "^8.21.0"
+  },
+  "dependencies": {
+    "compromise": "^14.14.4",
+    "xlsx": "^0.18.5"
+  }
+}
