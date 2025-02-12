@@ -3,39 +3,31 @@ import { wordDictionary } from './dictionary/cefr';
 import { translateWord } from './gpt-api/translate';
 import nlp from 'compromise';
 
-function preprocessText(text: string, minLength: number, useNLP: boolean = false): string[] {
-  // 转换为小写，去除标点
-  const words = text
-    .toLowerCase()
-    .replace(/[^a-z\s]/g, '');  // 移除非字母字符
+function preprocessText(text: string, minLength: number): string[] {
+  const words = text.replace(/[^a-zA-Z\s]/g, '');  // 移除非字母字符
 
   const preprocessTextNLP = (text: string): string[] => {
     // 使用compromise库进行自然语言处理
-    const doc = nlp(text);
+    const doc = nlp(text.toLowerCase());
     doc.normalize({
       whitespace: true,
       punctuation: true,
-      case: false,
       parentheses: true,
       possessives: true,
       verbs: true
     });
     doc.nouns().toSingular();
-    return doc.terms().out('array')
-  }
-  // 生成一个格式化前后的对照文本
-  const preprocessTextNoNLP = (text: string): string[] => {
-    return text.split(' ');
+    return doc.terms().out('array');
   }
 
   // 文本预处理
-  const preprocessTexts: string[] = useNLP ? preprocessTextNLP(words) : preprocessTextNoNLP(words);
+  const preprocessTexts: string[] = preprocessTextNLP(words);
   // 去重并过滤短单词
   return Array.from(new Set(preprocessTexts)).filter(word => word.length >= minLength);
 }
 
 function extractHighDifficultyWords(text: string, difficultyThreshold: number, minLength: number): { word: string, context: string }[] {
-  const words = preprocessText(text, minLength, true);
+  const words = preprocessText(text, minLength);
   const highDifficultyWords: { word: string, context: string }[] = [];
   
   // 将文本按单词分割并提取上下文
