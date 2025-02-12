@@ -15,7 +15,7 @@
     "contextual translation"
   ],
   "author": "rossroma",
-  "license": "GPL-3.0-only",
+  "license": "MIT",
   "git": "https://github.com/rossroma/wdc-translator",
   "devDependencies": {
     "@eslint/js": "^9.18.0",
@@ -33,7 +33,6 @@
     "typescript-eslint": "^8.21.0"
   },
   "dependencies": {
-    "compromise": "^14.14.4",
-    "xlsx": "^0.18.5"
+    "compromise": "^14.14.4"
   }
 }
